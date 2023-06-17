@@ -9,7 +9,7 @@ import Skills from './components/Skills'
 function App() {
 
   return (
-    <div className='bg-gray-800 p-2 '>
+    <div className='bg-gray-900 p-2 '>
 
       <NavBar />
       <Header />

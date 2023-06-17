@@ -6,16 +6,13 @@ function NavBar() {
     const handleClick = () => setClick(!click);
 
     return (
-        <nav className="bg-gray-800 p-2 text-white">
+        <nav className="bg-gray-900 p-2 text-white">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div>
-                    <i className="fas fa-code"></i>
+                    <i className="fas fa-code text-purple-500 text-2xl"></i>
                 </div>
 
-                <div
-                    className="nav-icon cursor-pointer md:hidden"
-                    onClick={handleClick}
-                ></div>
+
 
                 <ul
                     className={[
