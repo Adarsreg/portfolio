@@ -11,8 +11,8 @@ const Header = () => {
                     FullStack Developer | OpenSource Enthusiast
                 </p>
                 <div className="text-center my-5">
-                    <div className="inline-block rounded-full border-4 border-gray-300 overflow-hidden ">
-                        <img src={pfp} alt="Avatar" className="object-center max-h-60 md:max-h-80" />
+                    <div className="inline-block rounded-full border-4 border-gray-300 overflow-hidden mt-10">
+                        <img src={pfp} alt="Avatar" className="object-center max-h-60 md:max-h-80 " />
                     </div>
                 </div>
             </div>
