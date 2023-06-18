@@ -5,7 +5,7 @@ import NavBar from './components/Navbar'
 import About from './components/About'
 import Works from './components/Works'
 import Skills from './components/Skills'
-
+import ContactMe from './components/ContactMe'
 function App() {
 
   return (
@@ -16,7 +16,7 @@ function App() {
       <About />
       <Skills />
       <Works />
-
+      <ContactMe />
 
     </div>
   )
