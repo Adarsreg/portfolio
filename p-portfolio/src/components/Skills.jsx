@@ -4,32 +4,32 @@ import { SiTypescript } from 'react-icons/si';
 
 const Skills = () => {
     return (
-        <div className="py-10 bg-gray-800">
-            <p className="text-white text-3xl text-center mb-8">Here are some of the technologies I've worked with:</p>
-            <div className="flex justify-center">
-                <div className="flex items-center mx-8">
-                    <FaReact className="text-6xl text-blue-500 mr-2" title="React" />
-                    <span className="text-white text-xl font-semibold">React</span>
+        <div className="py-24 px-4 lg:px-8 bg-gray-800">
+            <p className="text-white text-2xl lg:text-3xl text-center mb-6 py-20" style={{ fontFamily: 'Montserrat' }}>Here are some of the technologies I love working with...</p>
+            <div className="flex flex-wrap justify-center">
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <FaReact className="text-4xl lg:text-6xl text-blue-500 mr-2" title="React" />
+                    <span className="text-white text-base lg:text-xl font-semibold">React</span>
                 </div>
-                <div className="flex items-center mx-8">
-                    <FaNodeJs className="text-6xl text-green-500 mr-2" title="Node.js" />
-                    <span className="text-white text-xl font-semibold">Node.js</span>
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <FaNodeJs className="text-4xl lg:text-6xl text-green-500 mr-2" title="Node.js" />
+                    <span className="text-white text-base lg:text-xl font-semibold">Node.js</span>
                 </div>
-                <div className="flex items-center mx-8">
-                    <FaDatabase className="text-6xl text-purple-500 mr-2" title="Database" />
-                    <span className="text-white text-xl font-semibold">Database</span>
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <FaDatabase className="text-4xl lg:text-6xl text-purple-500 mr-2" title="Database" />
+                    <span className="text-white text-base lg:text-xl font-semibold">Database</span>
                 </div>
-                <div className="flex items-center mx-8">
-                    <FaHtml5 className="text-6xl text-red-500 mr-2" title="HTML5" />
-                    <span className="text-white text-xl font-semibold">HTML5</span>
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <FaHtml5 className="text-4xl lg:text-6xl text-red-500 mr-2" title="HTML5" />
+                    <span className="text-white text-base lg:text-xl font-semibold">HTML5</span>
                 </div>
-                <div className="flex items-center mx-8">
-                    <FaCss3 className="text-6xl text-blue-500 mr-2" title="CSS3" />
-                    <span className="text-white text-xl font-semibold">CSS3</span>
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <FaCss3 className="text-4xl lg:text-6xl text-blue-500 mr-2" title="CSS3" />
+                    <span className="text-white text-base lg:text-xl font-semibold">CSS3</span>
                 </div>
-                <div className="flex items-center mx-8">
-                    <SiTypescript className="text-6xl text-blue-500 mr-2" title="TypeScript" />
-                    <span className="text-white text-xl font-semibold">TypeScript</span>
+                <div className="flex items-center mx-4 my-2 lg:my-0">
+                    <SiTypescript className="text-4xl lg:text-6xl text-blue-500 mr-2" title="TypeScript" />
+                    <span className="text-white text-base lg:text-xl font-semibold">TypeScript</span>
                 </div>
             </div>
         </div>

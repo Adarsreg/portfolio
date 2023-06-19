@@ -4,14 +4,14 @@ import projects from '../data/projects';
 
 const Works = () => {
     return (
-        <div className="bg-slate-900 py-10 rounded-3xl mx-auto max-w-6xl shadow-lg">
+        <div className="bg-slate-900 py-24 rounded-3xl mx-auto max-w-6xl shadow-lg">
             <div className="max-w-2xl mx-auto">
-                <p className="-mt-15 lg:text-2xl my-20 text-purple-500 mt-10 font-semibold text-center text-2xl">
-                    Here are some of my projects...
+                <p className="-mt-10 lg:text-2xl my-10 text-purple-500 font-semibold text-center text-xl" style={{ fontFamily: 'Montserrat' }}>
+                    HERE ARE SOME OF MY PROJECTS
                 </p>
                 <div className="space-y-6">
                     {projects.map((project) => (
-                        <div className="mb-6" key={project.title}>
+                        <div className="mb-6">
                             <ProjectCard
                                 title={project.title}
                                 description={project.description}

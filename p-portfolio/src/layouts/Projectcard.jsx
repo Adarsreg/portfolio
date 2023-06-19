@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectCard = ({ title, description, imageUrl, liveUrl, sourceUrl }) => {
     return (
@@ -13,11 +14,21 @@ const ProjectCard = ({ title, description, imageUrl, liveUrl, sourceUrl }) => {
                         <p className="text-gray-300 mt-2">{description}</p>
                     </div>
                     <div className="flex justify-start">
-                        <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-1 px-2 mr-20 text-gray-300 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm">
-                            <i className="fab fa-github mr-1"></i> GitHub
+                        <a
+                            href={sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block py-1 px-2 mr-20 text-gray-300 bg-gray-700 hover:bg-gray-800 rounded-lg text-sm"
+                        >
+                            <FaGithub className="mr-1 " /> GitHub
                         </a>
-                        <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-1 px-2 text-gray-300 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-sm">
-                            <i className="fas fa-external-link-alt mr-1"></i> Deployed
+                        <a
+                            href={liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block py-1 px-2 text-gray-300 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-sm"
+                        >
+                            <FaExternalLinkAlt className="mr-1" /> Deployed
                         </a>
                     </div>
                 </div>

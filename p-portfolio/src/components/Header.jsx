@@ -2,7 +2,7 @@ import pfp from '../images/pfpp.jpg';
 
 const Header = () => {
     return (
-        <div className="bg-gray-900">
+        <div className="bg-gray-900 py-0">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                 <h1 className="text-center text-4xl md:text-5xl font-bold text-purple-500 tracking-tight mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     Hi, I'm Adarsh Sharma

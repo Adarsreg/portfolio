@@ -1,33 +1,28 @@
 import notegpt from '../images/notegpt.png'
+import shoppingCart from '../images/shoppingCart.png'
+import memegen from '../images/memegen.png'
 
 const projects = [
     {
         title: "NOTEGPT",
-        description: "Notes app integrated with ChatGPT's API",
+        description: "Notes app integrated with ChatGPT's API, made with ReactTS and TailwindCSS ",
         imageUrl: notegpt,
-        liveUrl: "", // Add the live URL for the project here
+        liveUrl: "",
         sourceUrl: "https://github.com/Adarsreg/Notegpt"
     },
     {
-        title: "Project 2",
-        description: "Description for Project 2",
-        imageUrl: "https://via.placeholder.com/640x360.png?text=Placeholder+Image",
-        liveUrl: "", // Add the live URL for the project here
-        sourceUrl: ""
+        title: "Shopping Cart",
+        description: "A simple shopping cart using ReactTs and MaterialUI",
+        imageUrl: shoppingCart,
+        liveUrl: "https://shopping-cart-adarsreg.vercel.app/",
+        sourceUrl: "https://github.com/Adarsreg/ShoppingCart"
     },
     {
-        title: "Project 3",
-        description: "Description for Project 3",
-        imageUrl: "https://via.placeholder.com/640x360.png?text=Placeholder+Image",
-        liveUrl: "", // Add the live URL for the project here
-        sourceUrl: ""
-    },
-    {
-        title: "Project 4",
-        description: "Description for Project 4",
-        imageUrl: "https://via.placeholder.com/640x360.png?text=Placeholder+Image",
-        liveUrl: "", // Add the live URL for the project here
-        sourceUrl: ""
+        title: "Meme Generator",
+        description: "meme generator using react and plain css",
+        imageUrl: memegen,
+        liveUrl: "https://memegenerator-alpha.vercel.app/",
+        sourceUrl: "https://github.com/Adarsreg/memegenerator"
     }
 ];
 
