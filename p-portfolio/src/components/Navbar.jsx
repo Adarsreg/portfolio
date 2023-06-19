@@ -6,7 +6,7 @@ function NavBar() {
     const handleClick = () => setClick(!click);
 
     return (
-        <nav className="bg-gray-900 p-2 text-white">
+        <nav className="bg-transparent px-2 text-white fixed top-0 left-0 right-0 z-50">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <i className="fas fa-code text-purple-500 text-2xl"></i>
@@ -19,10 +19,7 @@ function NavBar() {
                     ].join(" ")}
                 >
                     <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a
-                            href="#"
-                            className="hover:text-purple-500"
-                        >
+                        <a href="#" className="hover:text-purple-500">
                             Home
                             <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
                         </a>
