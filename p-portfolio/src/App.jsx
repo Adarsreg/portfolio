@@ -7,6 +7,7 @@ import Works from './components/Works'
 import Skills from './components/Skills'
 import ContactMe from './components/ContactMe'
 import Footer from './components/Footer'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 function App() {
 
   return (
