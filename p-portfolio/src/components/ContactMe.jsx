@@ -6,7 +6,7 @@ const ContactMe = () => {
 
     return (
 
-        <div className="  bg-gray-900 flex items-center justify-center  text-center py-24">
+        <div className="  bg-gray-900 flex items-center justify-center  text-center py-24" id="contact">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8  bg-gray-800 rounded-lg shadow-lg py-20">
                 <h2 className="text-4xl font-bold text-purple-600 mb-4" style={{ fontFamily: 'Montserrat' }}>Contact Me</h2>
                 <p className="text-gray-400 mb-8">

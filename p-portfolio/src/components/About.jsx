@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="bg-gray-900 ">
+    <div className="bg-gray-900  " id="abt">
       <div className="max-w-3xl mx-auto">
         <p className="text-white text-3xl lg:text-4xl font-semibold text-center py-3.5" style={{ fontFamily: 'Montserrat' }}>
           Fullstack Developer with a Passion for Backend Development

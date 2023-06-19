@@ -20,7 +20,7 @@ function NavBar() {
                 >
                     <li className="p-4 cursor-pointer transition-colors duration-200 relative">
                         <a
-                            href="/"
+                            href="#"
                             className="hover:text-purple-500"
                         >
                             Home
@@ -28,19 +28,19 @@ function NavBar() {
                         </a>
                     </li>
                     <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a href="/about" className="hover:text-purple-500">
+                        <a href="#abt" className="hover:text-purple-500">
                             About
                             <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
                         </a>
                     </li>
                     <li className="p-4  cursor-pointer transition-colors duration-200 relative">
-                        <a href="/works" className="hover:text-purple-500">
+                        <a href="#wrks" className="hover:text-purple-500">
                             Works
                             <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
                         </a>
                     </li>
                     <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a href="/contact" className="hover:text-purple-500">
+                        <a href="#contact" className="hover:text-purple-500">
                             Contact Me
                             <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
                         </a>
