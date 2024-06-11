@@ -37,12 +37,12 @@ const Works = () => {
             >
                 <div className="max-w-2xl mx-auto">
                     <p
-                        className="-mt-10 lg:text-2xl my-10 text-purple-500 font-semibold text-center text-xl"
-                        style={{ fontFamily: 'Montserrat' }}
-                    >
-                        HERE ARE SOME OF MY PROJECTS
+                         className="-mt-10 lg:text-2xl my-10 text-purple-500 font-semibold text-center text-xl"
+                         style={{ fontFamily: ' sans-serif' }}
+                    > 
+                    MY PROJECTS
                     </p>
-                    <div className="space-y-6">
+                    <div className="space-y-2">
                         {projects.map((project) => (
                             <div className="mb-6" key={project.title}>
                                 <ProjectCard
