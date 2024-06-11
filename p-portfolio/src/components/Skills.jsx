@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { FaReact, FaNodeJs, FaDatabase, FaHtml5, FaCss3 } from 'react-icons/fa';
 import { SiTypescript } from 'react-icons/si';
 import { DiMongodb, DiNodejsSmall } from 'react-icons/di';
-
+import { RiNextjsFill } from 'react-icons/ri';
 const Skills = () => {
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -43,6 +43,13 @@ const Skills = () => {
                     Here are some of the technologies I love working with...
                 </p>
                 <div className="flex flex-wrap justify-center">
+                     <motion.div
+                        className="flex items-center mx-4 my-2 lg:my-0"
+                        whileHover={{ scale: 1.1 }}
+                    >
+                        <RiNextjsFill className="text-4xl lg:text-6xl text-white mr-2" title="Next.js" />
+                        <span className="text-white text-base lg:text-xl font-semibold">Next.js</span>
+                    </motion.div> 
                     <motion.div
                         className="flex items-center mx-4 my-2 lg:my-0"
                         whileHover={{ scale: 1.1 }}
