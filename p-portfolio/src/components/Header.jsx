@@ -43,7 +43,7 @@ const Header = () => {
                 <motion.div
                     className="flex justify-center"
                     transition={{ duration: 0.2, ease: 'easeIn' }}
-         
+                    
                     whileHover={{ scale: 1.05 }}
                     
                     
@@ -55,7 +55,9 @@ const Header = () => {
                             className="object-center h-60 md:h-80"
                             style={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            
+                            initial={{ opacity: 0, scale: 1 }}
+                            transition={{ duration: 0.5, ease: 'easeIn' }}
+
                             
                         />
                     </div>
