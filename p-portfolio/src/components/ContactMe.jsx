@@ -35,9 +35,14 @@ const ContactMe = () => {
                 animate={inView ? 'visible' : 'hidden'}
                 variants={containerVariants}
             >
-                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-800 rounded-lg shadow-lg py-20">
+                <motion.div
+                    className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-800 rounded-lg shadow-lg py-20"
+                    whileHover={{ scale: 1.1 }}
+                     
+                     transition={{ duration: 0.25, ease: 'easeIn' }}
+                >
                     <motion.h2
-                        className="text-4xl font-bold text-purple-600 mb-4"
+                        className="text-4xl font-bold text-purple-500 mb-4"
                         style={{ fontFamily: 'Montserrat' }}
                         variants={iconVariants}
                     >
@@ -83,7 +88,7 @@ const ContactMe = () => {
                             <FaLinkedin className="w-10 h-10" />
                         </motion.a>
                     </div>
-                </div>
+                </motion.div>
             </motion.div>
         </div>
     );

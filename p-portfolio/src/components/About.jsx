@@ -17,10 +17,10 @@ const About = () => {
       <div className="max-w-3xl mx-auto">
         <motion.p
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={controls}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          
+          
           className="text-gray-300 text-xl mt-6 leading-8 py-20"
+          
         >
           I specialize in creating scalable web applications and have a strong focus on backend development. With a solid foundation in fullstack development, I enjoy leveraging my skills to build robust and efficient solutions.
         </motion.p>

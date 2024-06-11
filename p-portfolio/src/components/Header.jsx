@@ -28,6 +28,7 @@ const Header = () => {
                     variants={headerVariants}
                     initial="hidden"
                     animate="visible"
+                    
                 >
                     Hi, I'm Adarsh Sharma
                 </motion.h1>
@@ -41,9 +42,11 @@ const Header = () => {
                 </motion.p>
                 <motion.div
                     className="flex justify-center"
-                    variants={avatarVariants}
-                    initial="hidden"
-                    animate={controls}
+                    transition={{ duration: 0.2, ease: 'easeIn' }}
+         
+                    whileHover={{ scale: 1.05 }}
+                    
+                    
                 >
                     <div className="rounded-full border-4 border-white overflow-hidden mt-10">
                         <motion.img
@@ -52,7 +55,8 @@ const Header = () => {
                             className="object-center h-60 md:h-80"
                             style={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+                            
+                            
                         />
                     </div>
                 </motion.div>

@@ -38,13 +38,18 @@ const Works = () => {
                 <div className="max-w-2xl mx-auto">
                     <p
                          className="-mt-10 lg:text-4xl my-10 text-purple-500 font-semibold text-center text-xl"
-                         style={{ fontFamily: ' Montserrat' }}
+                         style={{ fontFamily: 'Montserrat' }}
                     > 
                     MY PROJECTS
                     </p>
                     <div className="space-y-12">
                         {projects.map((project) => (
-                            <div className="mb-6" key={project.title}>
+                            <motion.div
+                                className="mb-6"
+                                key={project.title}
+                                whileHover={{ scale: 1.05 }} // Apply zoom effect on hover
+                                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                            >
                                 <ProjectCard
                                     title={project.title}
                                     description={project.description}
@@ -52,7 +57,7 @@ const Works = () => {
                                     liveUrl={project.liveUrl}
                                     sourceUrl={project.sourceUrl}
                                 />
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -62,4 +67,3 @@ const Works = () => {
 };
 
 export default Works;
-
