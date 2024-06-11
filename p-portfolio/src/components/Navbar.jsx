@@ -6,7 +6,7 @@ function NavBar() {
     const handleClick = () => setClick(!click);
 
     return (
-        <nav className="bg-transparent px-2 text-white fixed top-0 left-0 right-0 z-50">
+        <nav className="custom-navbar-bg px-2 text-white fixed top-0 left-0 right-0 z-50">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div>
                     <i className="fas fa-code text-purple-500 text-2xl"></i>

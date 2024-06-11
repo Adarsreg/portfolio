@@ -30,7 +30,7 @@ const Skills = () => {
     return (
         <div ref={ref}>
             <motion.div
-                className="py-24 px-4 lg:px-8 bg-gray-800"
+                className="py-24 px-4 lg:px-8 bg-slate-900"
                 id="skls"
                 initial={skillsAnimated ? 'hidden' : false}
                 animate={inView ? 'visible' : 'hidden'}
