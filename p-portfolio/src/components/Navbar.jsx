@@ -1,51 +1,26 @@
-import React, { useState } from "react";
 
-function NavBar() {
-    const [click, setClick] = useState(false);
+import { motion } from 'framer-motion';
 
-    const handleClick = () => setClick(!click);
-
+const NavBar = () => {
     return (
-        <nav className="custom-navbar-bg px-2 text-white fixed top-0 left-0 right-0 z-50">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-                <div>
-                    <i className="fas fa-code text-purple-500 text-2xl"></i>
-                </div>
-
-                <ul
-                    className={[
-                        "flex flex-col items-center md:flex-row md:space-x-4 md:ml-4 text-center md:text-left",
-                        click ? "flex" : "hidden md:flex",
-                    ].join(" ")}
-                >
-                    <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a href="#" className="hover:text-purple-500">
-                            Home
-                            <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
-                        </a>
-                    </li>
-                    <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a href="#abt" className="hover:text-purple-500">
-                            About
-                            <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
-                        </a>
-                    </li>
-                    <li className="p-4  cursor-pointer transition-colors duration-200 relative">
-                        <a href="#wrks" className="hover:text-purple-500">
-                            Works
-                            <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
-                        </a>
-                    </li>
-                    <li className="p-4 cursor-pointer transition-colors duration-200 relative">
-                        <a href="#contact" className="hover:text-purple-500">
-                            Contact Me
-                            <span className="absolute left-0 right-0 h-0.5 bg-purple-500 transform scale-x-0 transition-transform duration-200 origin-left"></span>
-                        </a>
-                    </li>
-                </ul>
+        <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-between items-center px-4 py-2"
+        >
+             <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-        </nav>
+            <div className="flex items-center gap-2">
+                 <div className="h-[2px] w-2 bg-emerald-500 animate-pulse"></div>
+                 <div className="text-xs md:text-sm text-emerald-500 font-mono tracking-[0.3em] uppercase font-bold drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">
+                    Digital Identity
+                 </div>
+            </div>
+        </motion.div>
     );
-}
+};
 
 export default NavBar;

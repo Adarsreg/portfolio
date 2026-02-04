@@ -1,116 +1,41 @@
-import React, { useEffect, useState } from 'react';
+
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaReact, FaNodeJs, FaDatabase, FaHtml5, FaCss3 } from 'react-icons/fa';
-import { SiTypescript } from 'react-icons/si';
-import { DiMongodb, DiNodejsSmall } from 'react-icons/di';
+import { FaReact, FaNodeJs, FaAws, FaDocker } from 'react-icons/fa';
+import { SiTypescript, SiJavascript, SiSalesforce, SiRedis, SiJest, SiPostgresql, SiTailwindcss, SiMongodb, SiExpress } from 'react-icons/si';
 import { RiNextjsFill } from 'react-icons/ri';
+
 const Skills = () => {
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-        rootMargin: '-100px 0px', // Adjust the root margin as needed
-    });
-    const [skillsAnimated, setSkillsAnimated] = useState(false);
-
-    const containerVariants = {
-        hidden: { opacity: 0, x: '-100%' },
-        visible: {
-            opacity: 1,
-            x: '0%',
-            transition: { duration: 1, ease: 'easeOut' },
-        },
-    };
-
-    useEffect(() => {
-        if (inView) {
-            setSkillsAnimated(true);
-        }
-    }, [inView]);
-
     return (
-        <div ref={ref}>
-            <motion.div
-                className="py-24 px-4 lg:px-8 bg-slate-900"
-                id="skls"
-                initial={skillsAnimated ? 'hidden' : false}
-                animate={inView ? 'visible' : 'hidden'}
-                variants={containerVariants}
-            >
-                <p
-                    className="text-white text-2xl lg:text-3xl text-center mb-6 py-20"
-                    style={{ fontFamily: 'Montserrat' }}
-                >
-                    Here are some of the technologies I love working with...
-                </p>
-                <div className="flex flex-wrap justify-center">
-                     <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <RiNextjsFill className="text-4xl lg:text-6xl text-white mr-2" title="Next.js" />
-                        <span className="text-white text-base lg:text-xl font-semibold">Next.js</span>
-                    </motion.div> 
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <FaReact className="text-4xl lg:text-6xl text-blue-500 mr-2" title="React" />
-                        <span className="text-white text-base lg:text-xl font-semibold">React</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <FaNodeJs className="text-4xl lg:text-6xl text-green-500 mr-2" title="Node.js" />
-                        <span className="text-white text-base lg:text-xl font-semibold">Node.js</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <DiNodejsSmall className="text-4xl lg:text-6xl text-green-500 mr-2" title="Express" />
-                        <span className="text-white text-base lg:text-xl font-semibold">Express</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <FaDatabase className="text-4xl lg:text-6xl text-purple-500 mr-2" title="Database" />
-                        <span className="text-white text-base lg:text-xl font-semibold">Database</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <FaHtml5 className="text-4xl lg:text-6xl text-red-500 mr-2" title="HTML5" />
-                        <span className="text-white text-base lg:text-xl font-semibold">HTML5</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <FaCss3 className="text-4xl lg:text-6xl text-blue-500 mr-2" title="CSS3" />
-                        <span className="text-white text-base lg:text-xl font-semibold">CSS3</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <SiTypescript className="text-4xl lg:text-6xl text-blue-500 mr-2" title="TypeScript" />
-                        <span className="text-white text-base lg:text-xl font-semibold">TypeScript</span>
-                    </motion.div>
-                    <motion.div
-                        className="flex items-center mx-4 my-2 lg:my-0"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <DiMongodb className="text-4xl lg:text-6xl text-green-500 mr-2" title="MongoDB" />
-                        <span className="text-white text-base lg:text-xl font-semibold">MongoDB</span>
-                    </motion.div>
-                </div>
-            </motion.div>
+        <div className="h-full flex flex-col justify-center p-4 overflow-y-auto scrollbar-hide mask-gradient-b">
+             <div className="grid grid-cols-3 gap-3">
+                 <SkillItem icon={<RiNextjsFill />} name="Next.js" color="text-white" />
+                 <SkillItem icon={<SiTypescript />} name="TypeScript" color="text-blue-400" />
+                 <SkillItem icon={<FaNodeJs />} name="Node.js" color="text-green-500" />
+                 <SkillItem icon={<SiExpress />} name="Express" color="text-white" />
+                 <SkillItem icon={<SiSalesforce />} name="Salesforce" color="text-blue-500" />
+                 <SkillItem icon={<FaReact />} name="React" color="text-cyan-400" />
+                 <SkillItem icon={<FaAws />} name="AWS" color="text-orange-500" />
+                 <SkillItem icon={<SiMongodb />} name="MongoDB" color="text-green-500" />
+                 <SkillItem icon={<SiRedis />} name="Redis" color="text-red-500" />
+                 <SkillItem icon={<SiPostgresql />} name="Postgres" color="text-blue-300" />
+                 <SkillItem icon={<FaDocker />} name="Docker" color="text-blue-500" />
+                 <SkillItem icon={<SiJest />} name="Jest" color="text-red-600" />
+                 <SkillItem icon={<SiTailwindcss />} name="Tailwind" color="text-cyan-300" />
+                 <SkillItem icon={<SiJavascript />} name="JavaScript" color="text-yellow-400" />
+            </div>
         </div>
     );
 };
 
-export default Skills;
+const SkillItem = ({ icon, name, color }) => (
+    <motion.div
+        className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 group"
+        whileHover={{ scale: 1.05 }}
+    >
+        <div className={`text-3xl ${color} opacity-100 drop-shadow-sm`}>{icon}</div>
+        <span className="text-xs text-zinc-300 font-medium uppercase tracking-wider group-hover:text-white transition-colors">{name}</span>
+    </motion.div>
+);
 
+export default Skills;

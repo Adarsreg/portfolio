@@ -1,30 +1,17 @@
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
+
+import { motion } from 'framer-motion';
 
 const About = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    }
-  }, [controls, inView]);
-
   return (
-    <div className="bg-gray-900" id="abt">
-      <div className="max-w-3xl mx-auto">
-        <motion.p
-          ref={ref}
-          
-          
-          className="text-gray-300 text-xl mt-6 leading-8 py-20"
-          
-        >
-          I specialize in creating scalable web applications and have a strong focus on backend development. With a solid foundation in fullstack development, I enjoy leveraging my skills to build robust and efficient solutions.
-        </motion.p>
-      </div>
+    <div className="h-full flex items-center justify-center p-6">
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-zinc-400 text-sm md:text-base leading-relaxed text-center font-light max-w-lg mx-auto"
+      >
+        I craft <span className="text-white font-medium">high-performance digital experiences</span> with a focus on scalability and user-centric design. <span className="block mt-4">Specializing in <span className="text-indigo-300 font-medium tracking-wide">Full Stack</span> development to transform complex challenges into elegant, production-ready solutions.</span>
+      </motion.p>
     </div>
   );
 };
