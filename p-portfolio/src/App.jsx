@@ -48,7 +48,7 @@ function App() {
             <About />
           </Card>
 
-          <Card className="md:col-span-2 md:row-span-2" title="Selected Projects">
+          <Card className="md:col-span-2 md:row-span-2" title="Projects">
              <Works />
           </Card>
 
