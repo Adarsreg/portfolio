@@ -18,11 +18,11 @@ const SocialLink = ({ href, icon, label, hoverColor }) => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={label}
+        aria-label={`${label} (opens in new tab)`}
         className="group text-3xl sm:text-4xl md:text-5xl text-zinc-400 transition-transform duration-300 hover:-translate-y-2 p-2 md:p-0 will-change-transform"
         whileTap={{ scale: 0.90 }}
     >
-        <span className={`flex items-center justify-center transition-colors duration-300 ${hoverColor}`}>
+        <span className={`flex items-center justify-center transition-colors duration-300 ${hoverColor}`} aria-hidden="true">
             {icon}
         </span>
     </motion.a>

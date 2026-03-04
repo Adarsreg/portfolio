@@ -11,39 +11,42 @@ const NavBar = ({ theme, toggleTheme }) => {
             <motion.nav 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
+                aria-label="Main navigation"
                 className="w-full md:w-auto flex items-center justify-between px-6 py-2.5 gap-6 md:gap-8 bg-white/80 dark:bg-black/80 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full shadow-sm transition-all duration-300 pointer-events-auto"
             >
                  <div className="flex items-center gap-2 md:mr-4">
-                    <span className="font-mono text-xs font-black tracking-widest uppercase text-black dark:text-white select-none">A.S.</span>
+                    <span className="font-mono text-xs font-black tracking-widest uppercase text-black dark:text-white select-none" aria-label="A.S. — Adarsh Sharma">A.S.</span>
                 </div>
                 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-6 text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
-                     <a href="#about" className="hover:text-black dark:hover:text-white transition-colors">About</a>
-                     <a href="#experience" className="hover:text-black dark:hover:text-white transition-colors">Experience</a>
-                     <a href="#works" className="hover:text-black dark:hover:text-white transition-colors">Works</a>
-                     <a href="#skills" className="hover:text-black dark:hover:text-white transition-colors">Expertise</a>
-                     <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
+                <div className="hidden md:flex items-center gap-6 text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400" role="list">
+                     <a href="#about" className="hover:text-black dark:hover:text-white transition-colors" role="listitem">About</a>
+                     <a href="#experience" className="hover:text-black dark:hover:text-white transition-colors" role="listitem">Experience</a>
+                     <a href="#works" className="hover:text-black dark:hover:text-white transition-colors" role="listitem">Works</a>
+                     <a href="#skills" className="hover:text-black dark:hover:text-white transition-colors" role="listitem">Expertise</a>
+                     <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors" role="listitem">Contact</a>
                 </div>
 
-                <div className="hidden md:block w-px h-3 bg-zinc-300 dark:bg-zinc-700 mx-2"></div>
+                <div className="hidden md:block w-px h-3 bg-zinc-300 dark:bg-zinc-700 mx-2" aria-hidden="true"></div>
                     
                 <div className="flex items-center gap-4">
                     <button 
                         onClick={toggleTheme} 
                         className="flex justify-center items-center w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all border border-black/5 dark:border-white/5"
-                        aria-label="Toggle Theme"
+                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                     >
-                        {theme === 'dark' ? <FaSun className="text-[12px]" /> : <FaMoon className="text-[12px]" />}
+                        {theme === 'dark' ? <FaSun className="text-[12px]" aria-hidden="true" /> : <FaMoon className="text-[12px]" aria-hidden="true" />}
                     </button>
 
                     {/* Mobile Hamburger Button */}
                     <button 
                         onClick={() => setIsOpen(!isOpen)}
                         className="md:hidden flex justify-center items-center w-7 h-7 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
-                        aria-label="Toggle Menu"
+                        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-nav-menu"
                     >
-                        {isOpen ? <FaTimes className="text-[14px]" /> : <FaBars className="text-[14px]" />}
+                        {isOpen ? <FaTimes className="text-[14px]" aria-hidden="true" /> : <FaBars className="text-[14px]" aria-hidden="true" />}
                     </button>
                 </div>
             </motion.nav>
@@ -51,7 +54,10 @@ const NavBar = ({ theme, toggleTheme }) => {
             {/* Mobile Dropdown Menu Capsule */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
+                    <motion.nav
+                        id="mobile-nav-menu"
+                        role="navigation"
+                        aria-label="Mobile navigation"
                         initial={{ opacity: 0, y: -10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -65,7 +71,7 @@ const NavBar = ({ theme, toggleTheme }) => {
                             <a href="#skills" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Expertise</a>
                             <a href="#contact" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
                         </div>
-                    </motion.div>
+                    </motion.nav>
                 )}
             </AnimatePresence>
         </div>
