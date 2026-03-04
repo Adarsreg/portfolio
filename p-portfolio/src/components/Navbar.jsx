@@ -20,6 +20,7 @@ const NavBar = ({ theme, toggleTheme }) => {
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-6 text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
                      <a href="#about" className="hover:text-black dark:hover:text-white transition-colors">About</a>
+                     <a href="#experience" className="hover:text-black dark:hover:text-white transition-colors">Experience</a>
                      <a href="#works" className="hover:text-black dark:hover:text-white transition-colors">Works</a>
                      <a href="#skills" className="hover:text-black dark:hover:text-white transition-colors">Expertise</a>
                      <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
@@ -59,6 +60,7 @@ const NavBar = ({ theme, toggleTheme }) => {
                     >
                         <div className="flex flex-col items-center gap-6 text-[11px] font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
                             <a href="#about" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">About</a>
+                            <a href="#experience" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Experience</a>
                             <a href="#works" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Works</a>
                             <a href="#skills" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Expertise</a>
                             <a href="#contact" onClick={() => setIsOpen(false)} className="hover:text-black dark:hover:text-white transition-colors">Contact</a>

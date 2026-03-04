@@ -4,7 +4,7 @@ import { SiGmail, SiTwitter, SiGithub, SiLinkedin } from "react-icons/si";
 
 const ContactMe = () => {
     return (
-        <div className="flex items-center justify-center gap-8 md:gap-16 pt-8 mt-4">
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-16 pt-4 sm:pt-8 mt-2 sm:mt-4">
             <SocialLink href="mailto:adarshregmi1@gmail.com" icon={<SiGmail />} label="Email" hoverColor="group-hover:text-[#EA4335] dark:group-hover:drop-shadow-[0_0_12px_rgba(234,67,53,0.8)]" />
             <SocialLink href="https://twitter.com/adarshregmi" icon={<SiTwitter />} label="Twitter" hoverColor="group-hover:text-[#1DA1F2]" />
             <SocialLink href="https://github.com/Adarsreg" icon={<SiGithub />} label="GitHub" hoverColor="group-hover:text-black dark:group-hover:text-white" />
@@ -19,7 +19,7 @@ const SocialLink = ({ href, icon, label, hoverColor }) => (
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        className="group text-4xl md:text-5xl text-zinc-400 transition-transform duration-300 hover:-translate-y-2 p-4 md:p-0 will-change-transform"
+        className="group text-3xl sm:text-4xl md:text-5xl text-zinc-400 transition-transform duration-300 hover:-translate-y-2 p-2 md:p-0 will-change-transform"
         whileTap={{ scale: 0.90 }}
     >
         <span className={`flex items-center justify-center transition-colors duration-300 ${hoverColor}`}>

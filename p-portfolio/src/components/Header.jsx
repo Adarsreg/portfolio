@@ -44,7 +44,7 @@ const Header = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
                         </div>
-                        <span className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 tracking-[0.2em] uppercase font-bold">Systems Online</span>
+                        <span className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 tracking-[0.2em] uppercase font-bold">Available For Work</span>
                     </div>
                     
                     <h1 className="text-center text-7xl md:text-9xl font-black tracking-tighter text-zinc-900 dark:text-white leading-[0.85] select-none">

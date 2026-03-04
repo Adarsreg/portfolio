@@ -22,12 +22,15 @@ const About = () => {
       
       <div className="mt-4 pt-6 border-t border-zinc-200 dark:border-white/5 flex gap-12">
            <div className="flex flex-col">
-               <span className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">2+</span>
+               <span className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">1+</span>
                <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-600 font-bold">Years Exp.</span>
            </div>
            <div className="flex flex-col">
                <span className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">10+</span>
-               <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-600 font-bold">Projects Built</span>
+               <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-600 font-bold">Projects Contributed</span>
+               <span className="text-[10px] md:text-xs font-mono text-zinc-400 dark:text-zinc-400 mt-2 lowercase max-w-[250px] leading-relaxed tracking-tight">
+                  involving greenstand org, vercel, nextauth.js & appwrite
+               </span>
            </div>
       </div>
     </div>

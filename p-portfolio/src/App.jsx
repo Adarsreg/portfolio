@@ -5,6 +5,7 @@ import './font.css';
 import Header from './components/Header';
 import NavBar from './components/Navbar';
 import About from './components/About';
+import Experience from './components/Experience';
 import Works from './components/Works';
 import Skills from './components/Skills';
 import ContactMe from './components/ContactMe';
@@ -81,19 +82,34 @@ function App() {
                  transition={{ duration: 0.8, delay: 0.2 }}
                  className="group"
                >
-                   {/* SHARPER UI Status Pill */}
+                    {/* SHARPER UI Status Pill */}
                    <div className="flex items-center gap-4 p-8 rounded-[20px] bg-white dark:bg-[#0a0a0a] border border-zinc-200/80 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.03)] hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-500 group-hover:-translate-y-1">
                        <span className="relative flex h-3 w-3 ml-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
                           <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                         </span>
                         <div className="flex flex-col">
-                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-2">System Status</span>
-                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-900 dark:text-white font-bold">Online & Ready</span>
+                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-2">Availability</span>
+                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-900 dark:text-white font-bold">Online</span>
                         </div>
                    </div>
                </motion.div>
            </div>
+        </section>
+
+        {/* Section 2.5: Experience Timeline */}
+        <section id="experience" className="w-full py-24 md:py-32">
+             <motion.h2 
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-zinc-500 dark:text-zinc-400 uppercase"
+             >
+                 Career <span className="text-zinc-900 dark:text-white font-bold">Timeline</span>
+             </motion.h2>
+             <Card title="Experience Log" className="max-w-4xl mx-auto backdrop-blur-3xl">
+                <Experience />
+             </Card>
         </section>
 
         {/* Section 3: Works */}
