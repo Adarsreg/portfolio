@@ -128,7 +128,7 @@ function App() {
         {/* Section 4: Skills */}
         <section id="skills" className="w-full py-24 md:py-32">
              <div className="border-t border-zinc-200 dark:border-white/10 w-32 mx-auto mb-16"></div>
-             <Card title="Expertise" disableHover className="bg-transparent border-none shadow-none dark:bg-transparent px-0">
+             <Card title="Expertise">
                 <Skills />
              </Card>
         </section>

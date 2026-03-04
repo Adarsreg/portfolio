@@ -1,5 +1,4 @@
 import notegpt from "../images/notegpt.png";
-import shoppingCart from "../images/shoppingcart.png";
 import memegen from "../images/memegen.png";
 import chatapp from "../images/chatapp.png";
 import gmailfilter from "../images/gmailfilter.png";

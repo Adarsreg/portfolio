@@ -7,7 +7,7 @@ const Skills = () => {
         <div className="flex flex-col items-center justify-center p-4">
              <div className="flex flex-col justify-center items-center text-center mb-12">
                  <p className="font-mono text-xs md:text-sm text-zinc-900 dark:text-zinc-500 uppercase tracking-[0.3em] font-bold">
-                    System Architecture
+                    Skills
                 </p>
                 <div className="h-1 w-16 bg-zinc-300 dark:bg-zinc-800 mt-6 rounded-full" />
             </div>
@@ -37,7 +37,7 @@ const Skills = () => {
 
 const SkillItem = ({ icon, name, hoverColor }) => (
     <motion.div
-        className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3.5 md:py-4 bg-white dark:bg-[#050505] border border-zinc-200 dark:border-white/10 rounded-full hover:bg-zinc-50 dark:hover:bg-white/5 hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-300 shadow-sm cursor-default group"
+        className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3.5 md:py-4 bg-white dark:bg-[#050505] border border-zinc-300 dark:border-white/10 rounded-full hover:bg-zinc-50 dark:hover:bg-white/5 hover:border-zinc-400 dark:hover:border-white/20 shadow-[0_1px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.09)] transition-all duration-300 cursor-default group"
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
     >
