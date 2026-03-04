@@ -1,35 +1,30 @@
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiGmail, SiTwitter, SiGithub, SiLinkedin } from "react-icons/si";
 
 const ContactMe = () => {
     return (
-        <div className="h-full flex flex-col items-center justify-center p-6 text-center">
-            <motion.p className="text-zinc-400 mb-8 max-w-xs mx-auto font-light text-sm leading-6">
-                Have a vision?<br/>
-                <span className="text-indigo-200 font-medium tracking-wide">Let's engineer it into reality.</span>
-            </motion.p>
-            <div className="flex items-center justify-center gap-6">
-                <SocialLink href="mailto:adarshregmi1@gmail.com" icon={<FaEnvelope />} />
-                <SocialLink href="https://twitter.com/adarshregmi" icon={<FaTwitter />} />
-                <SocialLink href="https://github.com/Adarsreg" icon={<FaGithub />} />
-                <SocialLink href="https://www.linkedin.com/in/adarsh-sharma-0635b921a/" icon={<FaLinkedin />} />
-            </div>
+        <div className="flex items-center justify-center gap-8 md:gap-16 pt-8 mt-4">
+            <SocialLink href="mailto:adarshregmi1@gmail.com" icon={<SiGmail />} label="Email" hoverColor="group-hover:text-[#EA4335] dark:group-hover:drop-shadow-[0_0_12px_rgba(234,67,53,0.8)]" />
+            <SocialLink href="https://twitter.com/adarshregmi" icon={<SiTwitter />} label="Twitter" hoverColor="group-hover:text-[#1DA1F2]" />
+            <SocialLink href="https://github.com/Adarsreg" icon={<SiGithub />} label="GitHub" hoverColor="group-hover:text-black dark:group-hover:text-white" />
+            <SocialLink href="https://www.linkedin.com/in/adarsh-sharma-0635b921a/" icon={<SiLinkedin />} label="LinkedIn" hoverColor="group-hover:text-[#0A66C2]" />
         </div>
     );
 };
 
-const SocialLink = ({ href, icon }) => (
+const SocialLink = ({ href, icon, label, hoverColor }) => (
     <motion.a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-400 hover:text-white text-2xl transition-colors duration-300 bg-white/5 p-3 rounded-full hover:bg-purple-600/20"
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
+        aria-label={label}
+        className="group text-4xl md:text-5xl text-zinc-400 transition-transform duration-300 hover:-translate-y-2 p-4 md:p-0 will-change-transform"
+        whileTap={{ scale: 0.90 }}
     >
-        {icon}
+        <span className={`flex items-center justify-center transition-colors duration-300 ${hoverColor}`}>
+            {icon}
+        </span>
     </motion.a>
 );
 

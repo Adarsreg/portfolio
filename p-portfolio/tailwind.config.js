@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -18,11 +19,10 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        heading: ["Plus Jakarta Sans", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
-      animation: {
-        blob: "blob 7s infinite",
-        "fade-in": "fadeIn 0.5s ease-out",
-      },
+
       transitionTimingFunction: {
         expo: "cubic-bezier(0.16, 1, 0.3, 1)",
         "expo-in": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",

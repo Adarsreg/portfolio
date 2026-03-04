@@ -1,5 +1,5 @@
-
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import './index.css';
 import './font.css';
 import Header from './components/Header';
@@ -11,62 +11,121 @@ import ContactMe from './components/ContactMe';
 import Footer from './components/Footer';
 import Card from './components/Card';
 
-
 function App() {
+  const containerRef = useRef(null);
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <div className="min-h-screen bg-obsidian p-4 md:p-8 text-accent-primary selection:bg-white/20 relative overflow-hidden flex flex-col">
-      {/* Background Ambience */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px] animate-blob"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-violet-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
-      </div>
+    <div ref={containerRef} className="relative min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black overflow-x-hidden font-sans transition-colors duration-200">
+      
+      {/* Top subtle gradient for depth */}
+      <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-black/[0.02] dark:from-white/[0.02] to-transparent pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto space-y-6 w-full flex-1">
-        <NavBar />
+      <NavBar theme={theme} toggleTheme={toggleTheme} />
+
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
         
-        {/* Layout Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-max">
-          
-          {/* Base Static Items */}
-          <Card className="md:col-span-2 md:row-span-2 flex flex-col justify-center min-h-[320px]">
-            <Header />
-          </Card>
+        {/* Section 1: Hero */}
+        <section id="home" className="w-full min-h-[90vh] flex flex-col items-center justify-center relative py-32">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="scale-110 md:scale-125 transition-transform duration-[2000ms] cursor-default"
+            >
+                <Header />
+            </motion.div>
+            
+            <motion.div 
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-12 animate-bounce opacity-50 text-xs font-mono tracking-[0.3em] text-zinc-500 dark:text-zinc-400 uppercase"
+            >
+                Scroll to Explore
+            </motion.div>
+        </section>
 
-          <Card className="md:col-span-1 md:row-span-1 flex items-center justify-center group" title="">
-             <div className="flex flex-col items-center gap-4 py-2 w-full">
-                <div className="flex items-center gap-3 text-emerald-400 bg-emerald-950/30 px-5 py-2 rounded-full border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.2)] cursor-default">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    <span className="text-xs font-mono uppercase tracking-widest font-bold">Available Now</span>
-                </div>
-             </div>
-          </Card>
-
-          <Card className="md:col-span-1 md:row-span-1" title="About Me">
-            <About />
-          </Card>
-
-          <Card className="md:col-span-2 md:row-span-2" title="Projects">
-             <Works />
-          </Card>
-
-          <Card className="md:col-span-1 md:row-span-1" title="Tech Stack">
-            <Skills />
-          </Card>
-
-          <Card className="md:col-span-1 md:row-span-1 flex flex-col justify-center" title="Let's Connect">
-            <ContactMe />
-          </Card>
-
-           {/* Footer Line */}
-           <div className="md:col-span-3 flex justify-center mt-4 opacity-50 hover:opacity-100 transition-opacity">
-               <Footer />
+        {/* Section 2: About & Status */}
+        <section id="about" className="w-full py-24 md:py-32 flex flex-col md:flex-row gap-16 items-center justify-between">
+           <div className="w-full md:w-[60%] flex flex-col gap-8">
+               <motion.div 
+                   initial={{ opacity: 0, x: -30 }}
+                   whileInView={{ opacity: 1, x: 0 }}
+                   viewport={{ once: true, margin: "-100px" }}
+                   transition={{ duration: 0.8 }}
+               >
+                 <Card title="Philosophy" className="min-h-[300px]">
+                    <About />
+                 </Card>
+               </motion.div>
            </div>
+           
+           <div className="w-full md:w-[35%] flex flex-col gap-8">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 whileInView={{ opacity: 1, scale: 1 }}
+                 viewport={{ once: true }}
+                 transition={{ duration: 0.8, delay: 0.2 }}
+                 className="group"
+               >
+                   {/* SHARPER UI Status Pill */}
+                   <div className="flex items-center gap-4 p-8 rounded-[20px] bg-white dark:bg-[#0a0a0a] border border-zinc-200/80 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.03)] hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-500 group-hover:-translate-y-1">
+                       <span className="relative flex h-3 w-3 ml-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        <div className="flex flex-col">
+                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-2">System Status</span>
+                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-900 dark:text-white font-bold">Online & Ready</span>
+                        </div>
+                   </div>
+               </motion.div>
+           </div>
+        </section>
 
-        </div>
-      </div>
+        {/* Section 3: Works */}
+        <section id="works" className="w-full py-24 md:py-32">
+            <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-zinc-500 dark:text-zinc-400 uppercase"
+            >
+                Selected <span className="text-zinc-900 dark:text-white font-bold">Works</span>
+            </motion.h2>
+            <Works />
+        </section>
+
+        {/* Section 4: Skills */}
+        <section id="skills" className="w-full py-24 md:py-32">
+             <div className="border-t border-zinc-200 dark:border-white/10 w-32 mx-auto mb-16"></div>
+             <Card title="Expertise" disableHover className="bg-transparent border-none shadow-none dark:bg-transparent px-0">
+                <Skills />
+             </Card>
+        </section>
+
+         {/* Section 5: Contact */}
+        <section id="contact" className="w-full max-w-5xl min-h-screen py-24 md:py-32 flex flex-col justify-center">
+            <Card title="Establish Link" className="text-center py-20 bg-transparent blur-none">
+                <ContactMe />
+            </Card>
+        </section>
+
+        <Footer />
+      </main>
     </div>
   );
 }

@@ -2,21 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply tracking-tight;
+  }
+}
+
 body {
-  @apply bg-obsidian text-accent-primary antialiased bg-noise;
+  @apply bg-white text-zinc-900 antialiased transition-colors duration-500;
+  background-color: #ffffff;
+  /* Premium radial gradient for light mode */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(200, 200, 255, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(200, 200, 255, 0.05), transparent 25%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   overflow-x: hidden;
 }
 
+.dark body {
+  @apply bg-[#000000] text-zinc-300;
+  background-color: #000000;
+  /* Extremely subtle dark mode dot grid */
+  background-image: radial-gradient(#1f2937 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-panel {
+    @apply bg-black/20 backdrop-blur-xl border border-white/5;
+  }
+}
+
 ::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
+  width: 6px;
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
