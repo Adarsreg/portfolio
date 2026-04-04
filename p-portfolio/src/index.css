@@ -6,29 +6,34 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     @apply tracking-tight;
+    /* Letter-spacing for headings -0.02em to -0.03em as requested */
+    letter-spacing: -0.025em;
   }
-}
 
-body {
-  @apply bg-white text-zinc-900 antialiased transition-colors duration-500;
-  background-color: #ffffff;
-  /* Premium radial gradient for light mode */
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(200, 200, 255, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(200, 200, 255, 0.05), transparent 25%);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  overflow-x: hidden;
-}
+  body {
+    /* Line-height 1.6-1.7 for body text as requested */
+    line-height: 1.65;
+    /* Use new theme colors */
+    @apply bg-light-bg text-light-text-primary antialiased transition-colors duration-200;
+  }
 
-.dark body {
-  @apply bg-[#000000] text-zinc-300;
-  background-color: #000000;
-  /* Extremely subtle dark mode dot grid */
-  background-image: radial-gradient(#1f2937 1px, transparent 1px);
-  background-size: 24px 24px;
+  .dark body {
+    @apply bg-dark-bg text-dark-text-primary;
+  }
+
+  /* Smooth color transitions for all elements as requested */
+  *, *::before, *::after {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  /* Selection highlight styled to use brand color at low opacity */
+  ::selection {
+    @apply bg-cosmic/20 text-light-text-primary;
+  }
+
+  .dark ::selection {
+    @apply bg-cosmic/30 text-dark-text-primary;
+  }
 }
 
 @layer utilities {
@@ -36,19 +41,38 @@ body {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
+  /* Soft shadows as requested for Light Mode - Slightly deeper for grounding */
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 12px 24px rgba(0,0,0,0.03);
+  }
+
+  /* Subtle dark mode glow/border as requested */
+  .dark-card-glow {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
   .glass-panel {
-    @apply bg-black/20 backdrop-blur-xl border border-white/5;
+    @apply bg-white/70 dark:bg-black/20 backdrop-blur-xl border border-light-border dark:border-dark-border;
   }
 }
 
+/* Custom Scrollbar styled subtly as requested */
 ::-webkit-scrollbar {
-  width: 6px;
-  background: #000;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-bg dark:bg-dark-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 10px;
+  @apply bg-light-border dark:bg-dark-elevated rounded-full border-2 border-transparent bg-clip-padding;
+  border-width: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-700;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -72,21 +96,19 @@ body {
   transform: translateX(-50%);
   z-index: 9999;
   padding: 0.75rem 1.5rem;
-  background: #000;
-  color: #fff;
+  @apply bg-light-text-primary text-light-bg dark:bg-dark-text-primary dark:text-dark-bg;
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 0 0 8px 8px;
   text-decoration: none;
-  border: 2px solid #fff;
   transition: top 0.2s ease;
 }
 
 .skip-link:focus {
   top: 0;
-  outline: 3px solid #fff;
+  outline: 3px solid currentColor;
   outline-offset: 2px;
 }
 
@@ -96,15 +118,7 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Dark mode focus ring */
-.dark *:focus-visible {
-  outline: 2px solid #60a5fa;
-  outline-offset: 3px;
+  @apply outline-2 outline-cosmic outline-offset-4 rounded-sm;
 }
 
 /* Respect prefers-reduced-motion for users who need it */
@@ -116,16 +130,5 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* Windows High Contrast / forced-colors support */
-@media (forced-colors: active) {
-  .skip-link {
-    border: 2px solid ButtonText;
-  }
-
-  *:focus-visible {
-    outline: 3px solid Highlight;
   }
 }

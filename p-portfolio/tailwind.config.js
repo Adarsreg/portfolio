@@ -5,6 +5,23 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Light Mode - Warmer, reduced blue light for eye comfort
+        "light-bg": "#F5F4F0",
+        "light-card": "#FAF9F6",
+        "light-border": "#E2E2DE",
+        "light-text-primary": "#111827",
+        "light-text-secondary": "#374151",
+        "light-input": "#EBEBE8",
+        
+        // Dark Mode
+        "dark-bg": "#0F0F0F",
+        "dark-card": "#1A1A1A",
+        "dark-elevated": "#242424",
+        "dark-border": "rgba(255, 255, 255, 0.07)",
+        "dark-text-primary": "#F0F0F0",
+        "dark-text-secondary": "#8A8A8A",
+
+        // Accents
         obsidian: "#050505",
         charcoal: "#0a0a0a",
         glass: "rgba(255, 255, 255, 0.05)",

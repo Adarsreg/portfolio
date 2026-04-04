@@ -6,10 +6,10 @@ const Skills = () => {
     return (
         <div className="flex flex-col items-center justify-center p-4">
              <div className="flex flex-col justify-center items-center text-center mb-12">
-                 <p className="font-mono text-xs md:text-sm text-zinc-900 dark:text-zinc-500 uppercase tracking-[0.3em] font-bold">
+                 <p className="font-mono text-xs md:text-sm text-light-text-primary dark:text-dark-text-secondary uppercase tracking-[0.3em] font-bold">
                     Skills
                 </p>
-                <div className="h-1 w-16 bg-zinc-300 dark:bg-zinc-800 mt-6 rounded-full" />
+                <div className="h-1 w-16 bg-light-border dark:bg-dark-border mt-6 rounded-full" />
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 md:gap-6 max-w-5xl" role="list" aria-label="Technical skills">
@@ -37,16 +37,16 @@ const Skills = () => {
 
 const SkillItem = ({ icon, name, hoverColor }) => (
     <motion.div
-        className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3.5 md:py-4 bg-white dark:bg-[#050505] border border-zinc-300 dark:border-white/10 rounded-full hover:bg-zinc-50 dark:hover:bg-white/5 hover:border-zinc-400 dark:hover:border-white/20 shadow-[0_1px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.09)] transition-all duration-300 cursor-default group"
+        className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3.5 md:py-4 bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border rounded-full hover:bg-light-input dark:hover:bg-white/5 hover:border-zinc-400 dark:hover:border-white/20 shadow-soft hover:shadow-[0_4px_14px_rgba(0,0,0,0.09)] transition-all duration-300 cursor-default group"
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         role="listitem"
         aria-label={name}
     >
-        <span className={`text-2xl md:text-3xl text-zinc-500 dark:text-zinc-400 transition-colors duration-300 ${hoverColor}`} aria-hidden="true">
+        <span className={`text-2xl md:text-3xl text-light-text-secondary dark:text-dark-text-secondary transition-colors duration-300 ${hoverColor}`} aria-hidden="true">
             {icon}
         </span>
-        <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-500 group-hover:text-black dark:group-hover:text-zinc-200 transition-colors duration-300" aria-hidden="true">
+        <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-light-text-secondary dark:text-dark-text-secondary group-hover:text-light-text-primary dark:group-hover:text-dark-text-primary transition-colors duration-300" aria-hidden="true">
             {name}
         </span>
     </motion.div>

@@ -29,10 +29,10 @@ function App() {
   };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black overflow-x-hidden font-sans transition-colors duration-200">
+    <div ref={containerRef} className="relative min-h-screen bg-light-bg dark:bg-dark-bg text-light-text-primary dark:text-dark-text-primary overflow-x-hidden font-sans transition-colors duration-200">
       
       {/* Top subtle gradient for depth - decorative, hidden from screen readers */}
-      <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-black/[0.02] dark:from-white/[0.02] to-transparent pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-black/[0.01] dark:from-white/[0.01] to-transparent pointer-events-none" aria-hidden="true" />
 
       <NavBar theme={theme} toggleTheme={toggleTheme} />
 
@@ -53,7 +53,7 @@ function App() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-12 animate-bounce opacity-50 text-xs font-mono tracking-[0.3em] text-zinc-500 dark:text-zinc-400 uppercase"
+                className="absolute bottom-12 animate-bounce opacity-50 text-xs font-mono tracking-[0.3em] text-light-text-secondary dark:text-dark-text-secondary uppercase"
                 aria-hidden="true"
             >
                 Scroll to Explore
@@ -84,14 +84,14 @@ function App() {
                  className="group"
                >
                     {/* SHARPER UI Status Pill */}
-                   <div className="flex items-center gap-4 p-8 rounded-[20px] bg-white dark:bg-[#0a0a0a] border border-zinc-200/80 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.03)] hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-500 group-hover:-translate-y-1" role="status" aria-label="Availability status: Online and available for work">
+                   <div className="flex items-center gap-4 p-8 rounded-[20px] bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border shadow-soft hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:hover:dark-card-glow hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-500 group-hover:-translate-y-1" role="status" aria-label="Availability status: Online and available for work">
                        <span className="relative flex h-3 w-3 ml-2" aria-hidden="true">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
                           <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                         </span>
                         <div className="flex flex-col">
-                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-2">Availability</span>
-                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-900 dark:text-white font-bold">Online</span>
+                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-light-text-secondary dark:text-dark-text-secondary mb-2">Availability</span>
+                            <span className="text-xs font-mono uppercase tracking-[0.2em] text-light-text-primary dark:text-dark-text-primary font-bold">Online</span>
                         </div>
                    </div>
                </motion.div>
@@ -105,9 +105,9 @@ function App() {
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  viewport={{ once: true }}
-                 className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-zinc-500 dark:text-zinc-400 uppercase"
+                 className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-light-text-secondary dark:text-dark-text-secondary uppercase"
              >
-                 Career <span className="text-zinc-900 dark:text-white font-bold">Timeline</span>
+                 Career <span className="text-light-text-primary dark:text-dark-text-primary font-bold">Timeline</span>
              </motion.h2>
              <Card title="Experience Log" className="max-w-4xl mx-auto backdrop-blur-3xl">
                 <Experience />
@@ -121,16 +121,16 @@ function App() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-zinc-500 dark:text-zinc-400 uppercase"
+                className="text-4xl md:text-5xl font-light tracking-tighter mb-16 text-center text-light-text-secondary dark:text-dark-text-secondary uppercase"
             >
-                Selected <span className="text-zinc-900 dark:text-white font-bold">Works</span>
+                Selected <span className="text-light-text-primary dark:text-dark-text-primary font-bold">Works</span>
             </motion.h2>
             <Works />
         </section>
 
         {/* Section 4: Skills */}
         <section id="skills" className="w-full py-24 md:py-32" aria-labelledby="skills-heading">
-             <div className="border-t border-zinc-200 dark:border-white/10 w-32 mx-auto mb-16" aria-hidden="true"></div>
+             <div className="border-t border-light-border dark:border-dark-border w-32 mx-auto mb-16" aria-hidden="true"></div>
              <Card title="Expertise" headingId="skills-heading">
                 <Skills />
              </Card>
