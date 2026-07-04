@@ -1,31 +1,80 @@
+import { SectionHead, MaskText, Reveal, ArrowUR } from "./Primitives";
 
-import { motion } from 'framer-motion';
-import { SiGmail, SiTwitter, SiGithub, SiLinkedin } from "react-icons/si";
+const SOCIALS = [
+  { label: "Email", handle: "adarshregmi1@gmail.com", href: "mailto:adarshregmi1@gmail.com" },
+  { label: "GitHub", handle: "@Adarsreg", href: "https://github.com/Adarsreg" },
+  { label: "LinkedIn", handle: "in/adarsh-sharma", href: "https://www.linkedin.com/in/adarsh-sharma-0635b921a/" },
+  { label: "Twitter / X", handle: "@adarshregmi", href: "https://twitter.com/adarshregmi" },
+];
 
 const ContactMe = () => {
-    return (
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-16 pt-4 sm:pt-8 mt-2 sm:mt-4">
-            <SocialLink href="mailto:adarshregmi1@gmail.com" icon={<SiGmail />} label="Email" hoverColor="group-hover:text-[#EA4335] dark:group-hover:drop-shadow-[0_0_12px_rgba(234,67,53,0.8)]" />
-            <SocialLink href="https://twitter.com/adarshregmi" icon={<SiTwitter />} label="Twitter" hoverColor="group-hover:text-[#1DA1F2]" />
-            <SocialLink href="https://github.com/Adarsreg" icon={<SiGithub />} label="GitHub" hoverColor="group-hover:text-black dark:group-hover:text-white" />
-            <SocialLink href="https://www.linkedin.com/in/adarsh-sharma-0635b921a/" icon={<SiLinkedin />} label="LinkedIn" hoverColor="group-hover:text-[#0A66C2]" />
-        </div>
-    );
-};
+  return (
+    <section id="link" className="scroll-mt-24" aria-labelledby="link-head">
+      <SectionHead title="Contact" id="link-head" />
 
-const SocialLink = ({ href, icon, label, hoverColor }) => (
-    <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${label} (opens in new tab)`}
-        className="group text-3xl sm:text-4xl md:text-5xl text-light-text-secondary dark:text-dark-text-secondary transition-transform duration-300 hover:-translate-y-2 p-2 md:p-0 will-change-transform"
-        whileTap={{ scale: 0.90 }}
-    >
-        <span className={`flex items-center justify-center transition-colors duration-300 ${hoverColor}`} aria-hidden="true">
-            {icon}
-        </span>
-    </motion.a>
-);
+      <div className="grid grid-cols-12 gap-y-14 gap-x-8">
+        {/* CTA */}
+        <div className="col-span-12 lg:col-span-7">
+          <h2 className="text-ink text-[clamp(2.6rem,8vw,7rem)] font-black leading-[0.86] tracking-tightest">
+            <MaskText lines={["LET'S WORK", "TOGETHER"]} />
+          </h2>
+
+          <Reveal delay={0.15}>
+            <p className="select-text mt-8 max-w-md text-base md:text-lg leading-relaxed text-ink-2">
+              Have a project in mind, or just want to say hello? Drop a line. I
+              read every message and usually reply the same day.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.22}>
+            <a
+              href="mailto:adarshregmi1@gmail.com"
+              className="group mt-8 inline-flex items-center gap-3 border-b-2 border-ink pb-2 text-lg font-medium text-ink transition-colors hover:border-accent hover:text-accent md:text-2xl"
+            >
+              <span className="select-text">adarshregmi1@gmail.com</span>
+              <ArrowUR className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+          </Reveal>
+        </div>
+
+        {/* Social ledger */}
+        <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+          <span className="label mb-4 block">Elsewhere</span>
+          <ul className="border-t border-rule-2">
+            {SOCIALS.map((s) => (
+              <li key={s.label} className="border-b border-rule">
+                <a
+                  href={s.href}
+                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 py-4"
+                  aria-label={`${s.label} (opens in new tab)`}
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span
+                      className="font-mono text-base font-light leading-none text-accent"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                    <span className="text-base md:text-lg font-bold uppercase tracking-tight text-ink transition-colors group-hover:text-accent">
+                      {s.label}
+                    </span>
+                  </span>
+                  <span className="flex items-center gap-3">
+                    <span className="hidden font-mono text-xs text-ink-3 sm:block">
+                      {s.handle}
+                    </span>
+                    <ArrowUR className="text-ink-3 transition-all duration-300 group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default ContactMe;

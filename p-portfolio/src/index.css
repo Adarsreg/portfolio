@@ -2,130 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   THEME TOKENS — channels (R G B) consumed by tailwind colors
+   ============================================================ */
+:root {
+  --paper: 240 237 230;   /* #F0EDE6  warm paper            */
+  --paper-2: 231 227 217; /* #E7E3D9  recessed panel        */
+  --paper-3: 222 217 205; /* #DED9CD  deep panel            */
+  --ink: 18 16 13;        /* #12100D  primary ink           */
+  --ink-2: 92 86 76;      /* #5C564C  secondary ink         */
+  --ink-3: 150 143 130;   /* #968F82  muted / captions      */
+  --rule: 205 199 186;    /* #CDC7BA  hairline rule          */
+  --rule-2: 176 168 152;  /* #B0A898  strong rule            */
+  --accent: 220 52 28;    /* #DC341C  vermilion signal       */
+}
+
+.dark {
+  --paper: 12 12 11;      /* #0C0C0B  near-black             */
+  --paper-2: 20 19 17;    /* #141311                         */
+  --paper-3: 28 27 24;    /* #1C1B18                         */
+  --ink: 237 234 225;     /* #EDEAE1  bone                   */
+  --ink-2: 150 143 130;   /* #968F82                         */
+  --ink-3: 108 102 92;    /* #6C665C                         */
+  --rule: 43 41 37;       /* subtle warm rule on black       */
+  --rule-2: 74 70 63;
+  --accent: 255 76 48;    /* #FF4C30  brighter for dark      */
+}
+
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    @apply tracking-tight;
-    /* Letter-spacing for headings -0.02em to -0.03em as requested */
-    letter-spacing: -0.025em;
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    /* Line-height 1.6-1.7 for body text as requested */
-    line-height: 1.65;
-    /* Use new theme colors */
-    @apply bg-light-bg text-light-text-primary antialiased transition-colors duration-200;
+    @apply bg-paper text-ink font-sans;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv01";
   }
 
-  .dark body {
-    @apply bg-dark-bg text-dark-text-primary;
+  /* Display type = tight tracking, heavy grotesque */
+  h1, h2, h3 {
+    @apply font-sans font-black tracking-tightest;
+    line-height: 0.92;
   }
 
-  /* Smooth color transitions for all elements as requested */
-  *, *::before, *::after {
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
-  }
-
-  /* Selection highlight styled to use brand color at low opacity */
   ::selection {
-    @apply bg-cosmic/20 text-light-text-primary;
+    @apply bg-accent text-paper;
   }
 
-  .dark ::selection {
-    @apply bg-cosmic/30 text-dark-text-primary;
+  /* Only smooth the theme-relevant properties — never transform, so
+     scroll-driven motion and hover shifts stay crisp. */
+  body,
+  header, section, footer,
+  a, button, span, p, h1, h2, h3, li, div, img, hr {
+    transition-property: background-color, border-color, color, fill;
+    transition-duration: 350ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@layer components {
+  /* Mono coordinate / index label used throughout the system */
+  .label {
+    @apply font-mono text-[10px] md:text-[11px] uppercase tracking-mono-wide text-ink-3;
+  }
+
+  /* Editorial link with an animated underline sweep */
+  .link-sweep {
+    @apply relative inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-sweep:hover {
+    background-size: 100% 1px;
   }
 }
 
 @layer utilities {
-  .text-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  .text-stroke {
+    -webkit-text-stroke: 1.4px rgb(var(--ink));
+    color: transparent;
   }
-
-  /* Soft shadows as requested for Light Mode - Slightly deeper for grounding */
-  .shadow-soft {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 12px 24px rgba(0,0,0,0.03);
+  .text-stroke-accent {
+    -webkit-text-stroke: 1.4px rgb(var(--accent));
+    color: transparent;
   }
-
-  /* Subtle dark mode glow/border as requested */
-  .dark-card-glow {
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+  .pause-marquee:hover .marquee-track {
+    animation-play-state: paused;
   }
-
-  .glass-panel {
-    @apply bg-white/70 dark:bg-black/20 backdrop-blur-xl border border-light-border dark:border-dark-border;
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-/* Custom Scrollbar styled subtly as requested */
-::-webkit-scrollbar {
-  width: 8px;
+/* ============================================================
+   DECORATIVE BASELINE GRID — fine vertical guide lines
+   ============================================================ */
+.grid-guides {
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent calc(100% / 12 - 1px),
+    rgb(var(--rule) / 0.5) calc(100% / 12 - 1px),
+    rgb(var(--rule) / 0.5) calc(100% / 12)
+  );
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-light-bg dark:bg-dark-bg;
-}
-
+/* ============================================================
+   SCROLLBAR — thin, ruled
+   ============================================================ */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { @apply bg-paper; }
 ::-webkit-scrollbar-thumb {
-  @apply bg-light-border dark:bg-dark-elevated rounded-full border-2 border-transparent bg-clip-padding;
-  border-width: 2px;
+  @apply bg-rule-2;
+  border: 3px solid rgb(var(--paper));
 }
+::-webkit-scrollbar-thumb:hover { @apply bg-ink-3; }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-zinc-400 dark:bg-zinc-700;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* ============================================
-   ADA / WCAG Accessibility Additions
-   ============================================ */
-
-/* Skip-to-content link for keyboard users */
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
 .skip-link {
   position: fixed;
   top: -100%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 1rem;
   z-index: 9999;
-  padding: 0.75rem 1.5rem;
-  @apply bg-light-text-primary text-light-bg dark:bg-dark-text-primary dark:text-dark-bg;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-radius: 0 0 8px 8px;
+  padding: 0.75rem 1.25rem;
+  @apply bg-ink text-paper font-mono text-xs uppercase tracking-mono-wide;
   text-decoration: none;
   transition: top 0.2s ease;
 }
+.skip-link:focus { top: 1rem; }
 
-.skip-link:focus {
-  top: 0;
-  outline: 3px solid currentColor;
-  outline-offset: 2px;
-}
-
-/* Global focus-visible: visible ring for keyboard, hidden for mouse */
-*:focus {
-  outline: none;
-}
-
+*:focus { outline: none; }
 *:focus-visible {
-  @apply outline-2 outline-cosmic outline-offset-4 rounded-sm;
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
 }
 
-/* Respect prefers-reduced-motion for users who need it */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
