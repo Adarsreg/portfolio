@@ -4,67 +4,52 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // Semantic colors resolve from CSS variables (channels) so the whole
+      // system swaps between paper/ink themes with a single class on <html>.
       colors: {
-        // Light Mode - Warmer, reduced blue light for eye comfort
-        "light-bg": "#F5F4F0",
-        "light-card": "#FAF9F6",
-        "light-border": "#E2E2DE",
-        "light-text-primary": "#111827",
-        "light-text-secondary": "#374151",
-        "light-input": "#EBEBE8",
-        
-        // Dark Mode
-        "dark-bg": "#0F0F0F",
-        "dark-card": "#1A1A1A",
-        "dark-elevated": "#242424",
-        "dark-border": "rgba(255, 255, 255, 0.07)",
-        "dark-text-primary": "#F0F0F0",
-        "dark-text-secondary": "#8A8A8A",
-
-        // Accents
-        obsidian: "#050505",
-        charcoal: "#0a0a0a",
-        glass: "rgba(255, 255, 255, 0.05)",
-        "glass-hover": "rgba(255, 255, 255, 0.1)",
-        "accent-primary": "#d4d4d8", // Zinc-300
-        "accent-secondary": "#a1a1aa", // Zinc-400
-        cosmic: "#6366f1", // Indigo 500
-        "cosmic-dark": "#4338ca", // Indigo 700
-      },
-      backdropBlur: {
-        xs: "2px",
+        paper: "rgb(var(--paper) / <alpha-value>)",
+        "paper-2": "rgb(var(--paper-2) / <alpha-value>)",
+        "paper-3": "rgb(var(--paper-3) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        "ink-2": "rgb(var(--ink-2) / <alpha-value>)",
+        "ink-3": "rgb(var(--ink-3) / <alpha-value>)",
+        rule: "rgb(var(--rule) / <alpha-value>)",
+        "rule-2": "rgb(var(--rule-2) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        heading: ["Plus Jakarta Sans", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        // Archivo carries both display and body — one cohesive grotesque voice.
+        sans: ["Archivo", "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', "Georgia", "serif"],
+        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
       },
-
+      letterSpacing: {
+        tightest: "-0.05em",
+        "mono-wide": "0.25em",
+      },
       transitionTimingFunction: {
-        expo: "cubic-bezier(0.16, 1, 0.3, 1)",
-        "expo-in": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
-        "expo-out": "cubic-bezier(0.19, 1, 0.22, 1)",
-      },
-      backgroundImage: {
-        noise:
-          "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E\")",
+        editorial: "cubic-bezier(0.16, 1, 0.3, 1)",
+        "in-out-quart": "cubic-bezier(0.76, 0, 0.24, 1)",
       },
       keyframes: {
-        blob: {
-          "0%": { transform: "translate(0px, 0px) scale(1)" },
-          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-          "100%": { transform: "translate(0px, 0px) scale(1)" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        fadeIn: {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        blink: {
+          "0%, 49%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
         },
       },
       animation: {
-        blob: "blob 7s infinite",
-        "fade-in": "fadeIn 0.5s ease-out",
-        "spin-slow": "spin 15s linear infinite",
+        marquee: "marquee 26s linear infinite",
+        "marquee-slow": "marquee 46s linear infinite",
+        "marquee-reverse": "marquee-reverse 34s linear infinite",
+        blink: "blink 1.1s step-end infinite",
       },
     },
   },

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F0EDE6"/>
+  <!-- frame -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#CDC7BA" stroke-width="2"/>
+  <!-- top rule labels -->
+  <text x="72" y="96" font-family="'JetBrains Mono', monospace" font-size="20" letter-spacing="4" fill="#968F82">FULLSTACK DEVELOPER</text>
+  <text x="1128" y="96" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="20" letter-spacing="4" fill="#968F82">GURGAON, INDIA</text>
+  <line x1="72" y1="120" x2="1128" y2="120" stroke="#CDC7BA" stroke-width="2"/>
+  <!-- name -->
+  <text x="66" y="330" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="200" letter-spacing="-8" fill="#12100D">ADARSH</text>
+  <text x="66" y="500" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="200" letter-spacing="-8" fill="#12100D">SHARMA</text>
+  <circle cx="840" cy="490" r="16" fill="#DC341C"/>
+  <!-- bottom rule -->
+  <line x1="72" y1="548" x2="1128" y2="548" stroke="#CDC7BA" stroke-width="2"/>
+  <text x="72" y="582" font-family="Archivo, Arial, sans-serif" font-style="italic" font-size="26" fill="#5C564C">Engineering high performance systems &amp; crafting interfaces.</text>
+</svg>
