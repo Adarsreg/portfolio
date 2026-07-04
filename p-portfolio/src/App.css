@@ -1,12 +1,2 @@
-p {
-
-
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-
-}
-
-.custom-navbar-bg {
-    background-color: #0e0e3880; 
-}
+/* App.css intentionally left minimal — all styling lives in Tailwind
+   tokens (tailwind.config.js) and the editorial base layer (index.css). */

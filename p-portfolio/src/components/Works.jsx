@@ -1,66 +1,225 @@
+import { useRef, useState, useCallback } from "react";
+import { motion } from "framer-motion";
+import { FaGithub } from "react-icons/fa6";
+import { SectionHead, ArrowUR } from "./Primitives";
+import projects from "../data/projects";
 
-import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import projects from '../data/projects';
+const GAP = 24; // matches gap-6
 
 const Works = () => {
-    return (
-        <ul className="flex flex-col gap-24" aria-label="Featured projects">
-            {projects.map((project, index) => (
-                <motion.li
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                    className={`flex flex-col md:flex-row ${index % 2 === 1 ? 'md:flex-row-reverse' : ''} gap-8 lg:gap-16 items-center group list-none`}
-                    key={project.title}
+  const scroller = useRef(null);
+  const drag = useRef({ down: false, lastX: 0, moved: 0, vx: 0, raf: 0 });
+  const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  const cardStep = () => {
+    const card = scroller.current?.children[0];
+    return card ? card.offsetWidth + GAP : 400;
+  };
+
+  const onScroll = useCallback(() => {
+    const el = scroller.current;
+    if (!el) return;
+    setActive(Math.min(projects.length - 1, Math.max(0, Math.round(el.scrollLeft / cardStep()))));
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+  }, []);
+
+  const stopInertia = () => {
+    if (drag.current.raf) cancelAnimationFrame(drag.current.raf);
+    drag.current.raf = 0;
+  };
+
+  const go = (dir) => {
+    stopInertia();
+    scroller.current?.scrollBy({ left: dir * cardStep(), behavior: "smooth" });
+  };
+
+  // Mouse drag with release momentum. Touch/pen fall back to native scroll.
+  const onDown = (e) => {
+    if (e.pointerType !== "mouse") return;
+    stopInertia();
+    drag.current.down = true;
+    drag.current.lastX = e.clientX;
+    drag.current.moved = 0;
+    drag.current.vx = 0;
+    scroller.current?.setPointerCapture?.(e.pointerId);
+  };
+
+  const onMove = (e) => {
+    if (!drag.current.down) return;
+    const dx = e.clientX - drag.current.lastX;
+    drag.current.lastX = e.clientX;
+    drag.current.moved += Math.abs(dx);
+    drag.current.vx = dx;
+    scroller.current.scrollLeft -= dx;
+  };
+
+  const onUp = (e) => {
+    if (!drag.current.down) return;
+    drag.current.down = false;
+    scroller.current?.releasePointerCapture?.(e.pointerId);
+    const el = scroller.current;
+    let v = drag.current.vx;
+    const decay = () => {
+      v *= 0.93;
+      el.scrollLeft -= v;
+      drag.current.raf = Math.abs(v) > 0.4 ? requestAnimationFrame(decay) : 0;
+    };
+    if (Math.abs(v) > 1) drag.current.raf = requestAnimationFrame(decay);
+  };
+
+  // swallow the click that follows a real drag so cards don't navigate
+  const onClickCapture = (e) => {
+    if (drag.current.moved > 6) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = 0;
+    }
+  };
+
+  return (
+    <section id="work" className="scroll-mt-24" aria-labelledby="work-head">
+      <SectionHead title="Projects" meta="Drag · scroll · arrows" id="work-head" />
+
+      <div
+        ref={scroller}
+        onScroll={onScroll}
+        onPointerDown={onDown}
+        onPointerMove={onMove}
+        onPointerUp={onUp}
+        onPointerCancel={onUp}
+        onClickCapture={onClickCapture}
+        role="region"
+        aria-label="Selected work, horizontal gallery"
+        tabIndex={0}
+        className="no-scrollbar -mx-5 flex cursor-grab select-none gap-6 overflow-x-auto overscroll-x-contain px-5 pb-2 active:cursor-grabbing md:-mx-10 md:px-10"
+      >
+        {projects.map((p) => {
+          const primary = p.liveUrl || p.sourceUrl;
+          return (
+            <motion.article
+              key={p.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-[85vw] shrink-0 sm:w-[68vw] md:w-[540px] lg:w-[600px]"
+            >
+              <div className="flex h-full flex-col border border-rule bg-paper">
+                {/* visual */}
+                <a
+                  href={primary}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/img relative block aspect-[16/10] overflow-hidden bg-paper-2"
+                  aria-label={`${p.title} (opens in new tab)`}
+                  draggable={false}
                 >
-                     {/* Visual Anchor - Flat border, subtle lift, 3D zoom OUTWARD */}
-                     <div className="w-full md:w-3/5 relative [perspective:1200px]">
-                          <div className="relative overflow-hidden rounded-[20px] z-20 aspect-[16/10] bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border transition-all duration-700 ease-out shadow-soft group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] dark:shadow-none dark:group-hover:dark-card-glow md:group-hover:[transform:rotateX(-2deg)_scale(1.03)] group-hover:scale-[1.02] origin-center">
-                              {/* Overlay Shadow - decorative */}
-                              <div className="absolute inset-0 bg-black/5 dark:bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-20 pointer-events-none" aria-hidden="true" />
-                              {/* 3D Glass Shine - decorative */}
-                              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30 pointer-events-none blend-overlay transform-gpu translate-z-0" aria-hidden="true" />
-                              
-                              <img
-                                 src={project.imageUrl}
-                                 alt={`Screenshot of ${project.title}`}
-                                 className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-[object-position] duration-[5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:object-bottom transform-gpu translate-z-0 will-change-[object-position]"
-                             />
-                          </div>
-                     </div>
+                  <img
+                    src={p.imageUrl}
+                    alt={`Screenshot of ${p.title}`}
+                    loading="eager"
+                    decoding="async"
+                    draggable={false}
+                    className="h-full w-full select-none object-cover object-top transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/img:scale-[1.04]"
+                  />
+                </a>
 
-                    {/* Narrative Anchor */}
-                    <div className="w-full md:w-2/5 flex flex-col gap-6 z-20">
-                         <div className="flex flex-col">
-                             <span className="text-[10px] font-mono text-light-text-secondary dark:text-dark-text-secondary tracking-[0.2em] uppercase mb-4" aria-hidden="true">0{index + 1} &mdash; Featured</span>
-                             <h3 className="text-3xl md:text-5xl font-bold text-light-text-primary dark:text-dark-text-primary tracking-tight group-hover:text-black dark:group-hover:text-zinc-300 transition-colors duration-300">
-                                 {project.title}
-                             </h3>
-                         </div>
-                         
-                         <p className="text-light-text-secondary dark:text-dark-text-secondary leading-relaxed text-lg font-light">
-                             {project.description}
-                         </p>
+                {/* body */}
+                <div className="flex flex-1 flex-col border-t border-rule p-6 md:p-8">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="label">{p.discipline}</span>
+                    <span className="font-mono text-sm text-ink-3 tabular-nums">{p.year}</span>
+                  </div>
 
-                         <div className="flex gap-4 pt-6">
-                            {project.liveUrl && (
-                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-2.5 rounded-md bg-light-text-primary dark:bg-dark-text-primary text-light-bg dark:text-dark-bg hover:opacity-90 transition-all duration-300 text-xs font-bold tracking-[0.15em] uppercase shadow-sm" aria-label={`View ${project.title} live demo (opens in new tab)`}>
-                                    <FaExternalLinkAlt aria-hidden="true" /> Live
-                                </a>
-                            )}
-                            {project.sourceUrl && (
-                                <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-2.5 rounded-md bg-light-card dark:bg-dark-card hover:bg-light-input dark:hover:bg-dark-elevated text-light-text-primary dark:text-dark-text-primary border border-light-border dark:border-dark-border hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-300 text-xs font-bold tracking-[0.15em] uppercase shadow-soft" aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}>
-                                    <FaGithub className="text-lg" aria-hidden="true" /> Source
-                                </a>
-                            )}
-                         </div>
-                    </div>
-                </motion.li>
-            ))}
-        </ul>
-    );
+                  <h3 className="text-3xl font-black tracking-tightest text-ink md:text-4xl">
+                    <a
+                      href={primary}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-start gap-2 transition-colors duration-300 hover:text-accent"
+                      draggable={false}
+                    >
+                      {p.title}
+                      <ArrowUR className="mt-1.5 text-sm text-ink-3" />
+                    </a>
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-relaxed text-ink-2">{p.description}</p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="border border-rule px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-ink-2"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-6">
+                    {p.liveUrl && (
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        draggable={false}
+                        className="link-sweep font-mono text-[11px] uppercase tracking-[0.15em] text-ink hover:text-accent"
+                      >
+                        ↗ Live Demo
+                      </a>
+                    )}
+                    {p.sourceUrl && (
+                      <a
+                        href={p.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        draggable={false}
+                        className="link-sweep inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-2 hover:text-ink"
+                      >
+                        <FaGithub aria-hidden="true" /> Source
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+          );
+        })}
+      </div>
+
+      {/* controls: progress + arrows */}
+      <div className="mt-8 flex items-center gap-6">
+        <div className="relative h-px flex-1 bg-rule">
+          <motion.div
+            className="absolute left-0 top-0 h-px bg-accent"
+            style={{ width: `${Math.max(progress * 100, 5)}%` }}
+          />
+        </div>
+
+        <div className="flex gap-2">
+          <button
+            onClick={() => go(-1)}
+            disabled={active === 0}
+            aria-label="Previous project"
+            className="flex h-10 w-10 items-center justify-center border border-rule-2 text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => go(1)}
+            disabled={active === projects.length - 1}
+            aria-label="Next project"
+            className="flex h-10 w-10 items-center justify-center border border-rule-2 text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Works;
